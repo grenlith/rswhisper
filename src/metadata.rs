@@ -6,13 +6,12 @@ use super::Metadata;
 
 pub fn read<R>(reader: &mut R) -> Result<Metadata, io::Error>
 where R: Read {
-    let header = Metadata {
+    Ok(Metadata {
         aggregation_type: reader.read_u32::<BigEndian>()?,
         max_retention: reader.read_u32::<BigEndian>()?,
         x_file_factor: reader.read_f32::<BigEndian>()?,
         archive_count: reader.read_u32::<BigEndian>()?
-    };
-    Ok(header)
+    })
 }
 
 #[cfg(test)]

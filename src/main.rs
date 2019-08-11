@@ -20,8 +20,10 @@ fn main() -> io::Result<()> {
     let archives = archives::read_all(&mut reader, &meta)?;
     let datapoint = datapoint::read_seq(&mut reader)?;
 
-    println!("{:?}", meta);
-    println!("{:?}", archives);
-    println!("{:?}", datapoint);
+    println!("Metadata: {}", meta);
+    for archive in archives {
+        println!("Archive: {}", archive);
+    }    
+    println!("Datapoint: {}", datapoint);
     Ok(())
 }

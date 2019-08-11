@@ -6,11 +6,10 @@ use super::DataPoint;
 
 pub fn read_seq<R>(reader: &mut R) -> Result<DataPoint, io::Error>
 where R: Read {
-    let dp = DataPoint {
+    Ok(DataPoint {
         interval: reader.read_u32::<BigEndian>()?,
         data: reader.read_f64::<BigEndian>()?
-    };
-    Ok(dp)
+    })
 }
 
 #[cfg(test)]
